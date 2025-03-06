@@ -64,7 +64,7 @@ public static void sortArr(String good, List<String> review) {
 	String[] words = goodBuilder.toString().split(" ");
 
 	for (String word : words) {
-        add(word, trie);
+                add(word, trie);
 	}
 	int n = review.size();
 
@@ -76,7 +76,7 @@ public static void sortArr(String good, List<String> review) {
         int k = 0;
         for (String word : words) {
             if (search(word, trie)) {
-            k++;
+                k++;
             }
         }
         rating[i][0]=i;        
