@@ -80,7 +80,7 @@ class SwimingInRisingWater {
         boolean[][] visited = new boolean[n][m];
         
         PriorityQueue<int[]> pq = new PriorityQueue<>((a, b)-> a[2]-b[2]);
-        pq.add(new int[]{0, 0, 0});
+        pq.add(new int[]{0, 0, grid[0][0]});
         visited[0][0]=true;
 
         while(!pq.isEmpty()){
