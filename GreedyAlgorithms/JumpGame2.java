@@ -2,14 +2,14 @@ import java.util.*;
 class JumpGame2{
 
     //Using Recursion
-    //TIme Complexity: O(N^N)
+    //TIme Complexity: O(2^N)
     //Space Complexity: O(N)
     public static int minimumJumpsUsingRecursion(int nums[], int idx, int jumps){
         if(idx>=nums.length)
             return jumps;
 
         int minJumps = Integer.MAX_VALUE;   
-        for(int i=1; i<=nums[i]; i++){
+        for(int i=1; i<=nums[idx]; i++){
             minJumps = Math.min(minJumps, minimumJumpsUsingRecursion(nums, idx+nums[i], jumps+1));
         }
         return minJumps;
