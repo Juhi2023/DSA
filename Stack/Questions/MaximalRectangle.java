@@ -2,7 +2,7 @@ import java.util.*;
 class MaximalRectangle {
 
     //in 3 pass
-    //Time Complexity: O(R * C * C) 
+    //Time Complexity: O(R *( C + C)) 
     //Space Complexity: O(C)
     public static int getArea(int[]row) {
         Stack<Integer> st = new Stack<>();
