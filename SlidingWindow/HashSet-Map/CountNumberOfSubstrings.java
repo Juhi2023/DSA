@@ -34,29 +34,29 @@ class CountNumberOfSubstrings{
 
         if(str.length()==0)
             return 0;
+
         int ans=0;
         int l=0, r=0;
         int count=0;
-        int visited[]= new int[26];
+        int freq[]= new int[26];
+
         while(r<str.length()){
             int ind = str.charAt(r) - 'a';
-            if(visited[ind]==0){
+            freq[ind]++;
+            if(freq[ind]==1){
                 count++;
             }
-            visited[ind]++;
-            if(count==k){
-                ans++;
-            }else{
-                while(count>k){
-                    int chIndex = str.charAt(l)-'a';
-                    visited[chIndex]--;
-                    if(visited[chIndex]==0){
-                        count--;
-                    }
-                    l++;
+
+            while(count>k){
+                int chIndex = str.charAt(l)-'a';
+                freq[chIndex]--;
+                if(freq[chIndex]==0){
+                    count--;
                 }
-                ans++;
+                l++;
             }
+            
+            ans+= r-l+1;
             r++;
         }
         
