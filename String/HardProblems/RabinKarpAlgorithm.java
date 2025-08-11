@@ -43,8 +43,56 @@ class RabinKarpAlgorithm{
 
     }
 
+    //rabin karp
+    private static final int BASE = 256;               // alphabet size
+    private static final long MOD = 1_000_000_007L;    // large prime
+
+    public static int rabinKarpAlgo(String text, String pattern) {
+        if (pattern == null || text == null) return -1;
+        int n = text.length();
+        int m = pattern.length();
+        if (m > n) 
+            return -1;
+
+        long patternHash = 0;
+        long windowHash = 0;
+        long power = 1;
+
+        // Precompute BASE^(m-1) % MOD
+        for (int i = 0; i < m - 1; i++) {
+            power = (power * BASE) % MOD;
+        }
+
+        // Initial hash values for pattern and first window
+        for (int i = 0; i < m; i++) {
+            patternHash = (patternHash * BASE + pattern.charAt(i)) % MOD;
+            windowHash = (windowHash * BASE + text.charAt(i)) % MOD;
+        }
+
+        // Slide over text
+        for (int i = 0; i <= n - m; i++) {
+            if (patternHash == windowHash) {
+                int j=0;
+                for (j = 0; j < m; j++) {
+                    if (text.charAt(i + j) != pattern.charAt(j)) 
+                        break;
+                }
+
+                if (j == m) 
+                    return i;
+            }
+
+            // Roll the hash to the next window
+            if (i < n - m) {
+                long leading = (text.charAt(i) * power) % MOD;
+                windowHash = (windowHash - leading + MOD) % MOD; // remove leading char
+                windowHash = (windowHash * BASE + text.charAt(i + m)) % MOD; // add new char
+            }
+        }
+        return -1; // No match found
+    }
 
     public static void main(String args[]){
-        System.out.println(findSubstring("apoorvkunalr", "kunal"));
+        System.out.println(rabinKarpAlgo("apoorvkunalr", "kunal"));
     }
 }
