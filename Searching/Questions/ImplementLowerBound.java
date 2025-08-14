@@ -2,6 +2,7 @@
 
 import java.util.*;
 
+//The lower bound of a number is defined as the smallest index in the sorted array where the element is greater than or equal to the given number.
 public class ImplementLowerBound{
 
     public static int findFloor(long arr[], int n, long x) {
